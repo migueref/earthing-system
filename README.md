@@ -11,7 +11,7 @@ This repository was built with the following technologies:
 
   - Materialize 
   - Ionic 2
-  - AngularJS 2
+  - Angular 2
 
 ## Connect with me
 
