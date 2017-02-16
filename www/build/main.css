@@ -21276,3 +21276,11 @@ sub {
     padding-top: calc(16px + 20px);
   }
 }
+
+.toolbar-background {
+  background-color: #0d47a1;
+}
+
+.toolbar-title {
+  color: white;
+}
