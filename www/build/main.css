@@ -21286,59 +21286,93 @@ sub {
 }
 
 .blue {
-  color: #0d47a1;
+  color: #1a237e;
+}
+
+.bar-button {
+  color: white;
+}
+
+.bar-button:after {
+  color: #bbdefb;
+}
+
+.form-control {
+  border-style: none;
+  border-bottom-style: solid;
+  border-bottom-color: #bdbdbd;
+  border-bottom-width: thin;
+}
+
+.form-control:focus {
+  border-style: none;
+  border-bottom-style: solid;
+  border-bottom-color: #64b5f6;
+}
+
+.col-xs-12 {
+  width: 100%;
+  float: left;
+}
+
+.col-xs-11 {
+  width: 91.66666667%;
+  float: left;
+}
+
+.col-xs-10 {
+  width: 83.33333333%;
+  float: left;
+}
+
+.col-xs-9 {
+  width: 75%;
+  float: left;
+}
+
+.col-xs-8 {
+  width: 66.66666667%;
+  float: left;
+}
+
+.col-xs-7 {
+  width: 58.33333333%;
+  float: left;
+}
+
+.col-xs-6 {
+  width: 50%;
+  float: left;
+}
+
+.col-xs-5 {
+  width: 41.66666667%;
+  float: left;
+}
+
+.col-xs-4 {
+  width: 33.33333333%;
+  float: left;
+}
+
+.col-xs-3 {
+  width: 25%;
+  float: left;
+}
+
+.col-xs-2 {
+  width: 16%;
+  float: left;
 }
 
 page-home .pointer {
   cursor: pointer;
 }
 
-page-home .card-background-page {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  /*centra verticalmente a los hijos*/
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  /*centrar horizontalmente a los hijos*/
-  -webkit-flex: 0 1 auto;
-  -ms-flex: 0 1 auto;
-  flex: 0 1 auto;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+page-home .blue-light {
+  background-color: #1a237e;
 }
 
-page-home .card-background-page ion-card {
-  position: relative;
-  text-align: center;
-}
-
-page-home .card-background-page .card-title {
-  position: absolute;
-  top: 36%;
-  font-size: 2.0em;
-  width: 100%;
-  font-weight: bold;
-  color: #fff;
-  text-shadow: black 0.1em 0.1em 0.2em;
-}
-
-page-home .card-background-page .card-subtitle {
-  font-size: 1.0em;
-  position: absolute;
-  top: 52%;
-  width: 100%;
-  color: #fff;
-}
-
-page-home .glue-light {
-  background-color: #90caf9;
+page-suelo .medium-height {
+  height: 2em;
 }

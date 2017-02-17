@@ -4,26 +4,37 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="card-background-page blue-light">
+<ion-content class="card-background-page ">
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="assets/img/btn.jpg">
+      </ion-thumbnail>
+      <h2>Resistividad del suelo</h2>
+      <ion-fab middle right edge>
+        <button ion-fab mini [navPush]="sueloPage"><ion-icon name="ios-arrow-forward"></ion-icon></button>
+      </ion-fab>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="assets/img/btn2.jpg">
+      </ion-thumbnail>
+      <h2>Resistencia por varilla</h2>
+      <p>Rvarilla</p>
+      <ion-fab middle right edge>
+        <button ion-fab mini [navPush]="varillaPage"><ion-icon name="ios-arrow-forward"></ion-icon></button>
+      </ion-fab>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-left>
+        <img src="assets/img/btn3.jpg">
+      </ion-thumbnail>
+      <h2>Resistencia de grupo</h2>
+      <p>Rgrupo</p>
+      <ion-fab middle right edge>
+        <button ion-fab mini [navPush]="grupoPage"><ion-icon name="ios-arrow-forward"></ion-icon></button>
 
-  <ion-card class="pointer">
-    <img src="assets/img/btn.jpg"/>
-    <div class="card-title">Resistividad del suelo</div>
-    <div class="card-subtitle">41 Lqistings</div>
-  </ion-card>
-
-  <ion-card class="pointer">
-    <img src="assets/img/btn2.jpg"/>
-    <div class="card-title">Resistencia por varilla</div>
-    <div class="card-subtitle">RVarilla</div>
-  </ion-card>
-
-  <ion-card class="pointer">
-    <img src="assets/img/btn3.jpg"/>
-    <div class="card-title">Resistencia de grupo</div>
-    <div class="card-subtitle">RGrupo</div>
-  </ion-card>
-
-
-
+      </ion-fab>
+    </ion-item>
+  </ion-list>
 </ion-content>
