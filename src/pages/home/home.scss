@@ -1,3 +1,42 @@
 page-home {
+  .pointer{
+		  cursor:pointer;
+		}
+  .card-background-page {
+    display:flex;
+    align-items:center;/*centra verticalmente a los hijos*/
+    justify-content: center;/*centrar horizontalmente a los hijos*/
 
+    flex:0 1 auto;
+    flex-direction:row;
+    flex-wrap: wrap;
+    ion-card {
+      position: relative;
+      text-align: center;
+    }
+
+    .card-title {
+      position: absolute;
+      top: 36%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: black 0.1em 0.1em 0.2em;
+    }
+
+    .card-subtitle {
+      font-size: 1.0em;
+      position: absolute;
+      top: 52%;
+      width: 100%;
+      color: #fff;
+      text-shadow: black 0.1em 0.1em 0.2em;
+      
+    }
+
+  }
+  .glue-light{
+    background-color: #90caf9;
+  }
 }

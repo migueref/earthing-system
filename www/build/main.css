@@ -21277,10 +21277,68 @@ sub {
   }
 }
 
-.toolbar-background {
+.toolbar-background, ion-tabs {
   background-color: #0d47a1;
 }
 
 .toolbar-title {
   color: white;
+}
+
+.blue {
+  color: #0d47a1;
+}
+
+page-home .pointer {
+  cursor: pointer;
+}
+
+page-home .card-background-page {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  /*centra verticalmente a los hijos*/
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  /*centrar horizontalmente a los hijos*/
+  -webkit-flex: 0 1 auto;
+  -ms-flex: 0 1 auto;
+  flex: 0 1 auto;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+page-home .card-background-page ion-card {
+  position: relative;
+  text-align: center;
+}
+
+page-home .card-background-page .card-title {
+  position: absolute;
+  top: 36%;
+  font-size: 2.0em;
+  width: 100%;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+page-home .card-background-page .card-subtitle {
+  font-size: 1.0em;
+  position: absolute;
+  top: 52%;
+  width: 100%;
+  color: #fff;
+}
+
+page-home .glue-light {
+  background-color: #90caf9;
 }
