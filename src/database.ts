@@ -4,7 +4,7 @@ export class TierraAppDB extends Dexie{
   constructor(){
 	   super("TierraMapAppDB");
      this.version(1).stores({
-        resistividades:"++id,no,medicion,distancia,profundidad,resistividad,total,lat,lng"
+        resistividades:"++id,no,datos_perfil,medicion,distancia,profundidad,resistividad,total,lat,lng"
     });
     this.resistividades.mapToClass(Resistividad)
 	}
@@ -14,6 +14,7 @@ export class TierraAppDB extends Dexie{
 export interface IResistividad{
   id?:number;
   no:number;
+  datos_perfil:string;
   medicion: number;
   distancia:number;
   profundidad:number;
@@ -39,6 +40,7 @@ export interface IGrupo{
 export class Resistividad implements IResistividad{
     id?:number;
     no:number;
+    datos_perfil:string;
     medicion: number;
     distancia:number;
     profundidad:number;
@@ -46,12 +48,13 @@ export class Resistividad implements IResistividad{
     total:number;//Promedio de todas las p.
     lat:number;
     lng:number;
-    constructor(no:number, medicion:number,distancia:number,profundidad:number,resistividad:number,total?:number, lat?:number,lng ?: number, id?:number){
+    constructor(no:number,datos_perfil:string,medicion:number,distancia?:number,profundidad?:number,resistividad?:number,total?:number, lat?:number,lng ?: number, id?:number){
 			this.no=no;
       this.medicion=medicion;
-      this.distancia=distancia;
-      this.profundidad=profundidad;
-			this.total=total;
+      this.datos_perfil=datos_perfil;
+      if(distancia)this.distancia=distancia;
+      if(profundidad)this.profundidad=profundidad;
+			if(total)this.total=total;
 			if(lat)this.lat=lat;
 			if(lng)this.lng=lng;
 			if(id)this.id=id;

@@ -20,47 +20,34 @@
       <h2>Perfiles</h2>
       <ion-list radio-group>
         <ion-list-header>
-          Seleccione el número de perfiles a medir:
+          Seleccione el número de perfiles a medir{{model.no}}:
         </ion-list-header>
+        <ion-item>
+          <ion-range [(ngModel)]="model.no" max="5" min="1" step="1">
+            <ion-icon range-left small name="minus"></ion-icon>
+            <ion-icon range-right name="plus"></ion-icon>
+          </ion-range>
 
-        <ion-item>
-          <ion-label>1</ion-label>
-          <ion-radio checked="true" value="1"></ion-radio>
         </ion-item>
-
-        <ion-item>
-          <ion-label>2</ion-label>
-          <ion-radio value="2"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>3</ion-label>
-          <ion-radio value="3"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>4</ion-label>
-          <ion-radio value="4"></ion-radio>
-        </ion-item>
-        <ion-item>
-          <ion-label>5</ion-label>
-          <ion-radio value="5"></ion-radio>
-        </ion-item>
+        <h4>
+          Número de perfiles seleccionado: {{model.no}}
+        </h4>
 
       </ion-list>
     </ion-slide>
 
     <ion-slide>
-      <h2>Datos del perfil</h2>
       <ion-list radio-group>
         <ion-list-header>
-          Seleccione el número de perfiles a medir:
+          Datos del perfil:
         </ion-list-header>
         <ion-item>
           <ion-label>Vertical</ion-label>
-          <ion-radio checked="true" value="1"></ion-radio>
+          <ion-radio checked="true" value="vertical" [(ngModel)]="model.datos_perfil" ngDefaultControl></ion-radio>
         </ion-item>
         <ion-item>
           <ion-label>Horizontal</ion-label>
-          <ion-radio value="2"></ion-radio>
+          <ion-radio value="horizontal"[(ngModel)]="model.datos_perfil" ngDefaultControl></ion-radio>
         </ion-item>
       </ion-list>
     </ion-slide>
@@ -106,7 +93,7 @@
           15
         </div>
         <div class="col-xs-3">
-          <input type="number" step="0.01" name=""placeholder="Medición" class="col-xs-12 form-control" value="">
+          <input type="number" [(ngModel)]="model.medicion" step="0.01" name=""placeholder="Medición" class="col-xs-12 form-control" value="">
         </div>
       </div>
       <div class="col-xs-12 medium-height">
@@ -120,7 +107,7 @@
           20
         </div>
         <div class="col-xs-3">
-          <input type="number" step="0.01" name=""placeholder="Medición" class="col-xs-12 form-control" value="">
+          <input type="number"step="0.01" name=""placeholder="Medición" class="col-xs-12 form-control" value="">
         </div>
       </div>
       <div class="col-xs-12 medium-height">
@@ -148,7 +135,7 @@
           30
         </div>
         <div class="col-xs-3">
-          <input type="number" step="0.01" name=""placeholder="Medición" class="col-xs-12 form-control" value="">
+          <input type="number"  step="0.01" name=""placeholder="Medición" class="col-xs-12 form-control" value="">
         </div>
       </div>
 
@@ -296,7 +283,7 @@
 
         </div>
       </div>
-      <button ion-button clear>Promedio total</button>
+      <button ion-button clear (click)="save()">Promedio total</button>
 
 
     </ion-slide>

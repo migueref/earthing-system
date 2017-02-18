@@ -13,12 +13,20 @@ import {Resistividad} from '../../database';
   templateUrl: 'suelo.html'
 })
 export class SueloPage {
+  model:Resistividad;
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.model = new Resistividad(null,"",null);
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  }
+  save(){
+    console.log("entrando")
+    console.log(this.model)
+		this.model.save()
+	}
 
   ionViewDidLoad() {
-    let resistividad = new Resistividad(1, 4.61,1,10,24.53);
-		resistividad.save();
+    // let resistividad = new Resistividad(1,"vertical", 4.61,1,10,24.53);
+		// resistividad.save();
     console.log('ionViewDidLoad SueloPage');
   }
 
