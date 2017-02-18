@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {Resistividad} from '../../database';
+import {Perfil} from '../../database';
 
 /*
   Generated class for the Suelo page.
@@ -13,9 +13,9 @@ import {Resistividad} from '../../database';
   templateUrl: 'suelo.html'
 })
 export class SueloPage {
-  model:Resistividad;
+  model:Perfil;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.model = new Resistividad(null,"",null);
+    this.model = new Perfil(null,"",null);
 
   }
   save(){

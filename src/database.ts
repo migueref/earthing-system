@@ -1,17 +1,20 @@
 import Dexie from '../node_modules/dexie/dist/dexie';
 export class TierraAppDB extends Dexie{
-  resistividades : Dexie.Table<IResistividad,number>
+  perfiles : Dexie.Table<IPerfil,number>
   constructor(){
 	   super("TierraMapAppDB");
      this.version(1).stores({
         resistividades:"++id,no,datos_perfil,medicion,distancia,profundidad,resistividad,total,lat,lng"
+     });
+     this.version(2).stores({
+        perfiles:"++id,no,datos_perfil,medicion,distancia,profundidad,resistividad,total,lat,lng"
     });
-    this.resistividades.mapToClass(Resistividad)
+    this.perfiles.mapToClass(Perfil)
 	}
 
 }
 
-export interface IResistividad{
+export interface IPerfil{
   id?:number;
   no:number;
   datos_perfil:string;
@@ -37,7 +40,13 @@ export interface IGrupo{
   n:number;
   total:number;
 }
-export class Resistividad implements IResistividad{
+export class ListaPerfil{
+  id?:number;
+  noPerfiles:number;
+  orientacion:string;
+  array_medicion:Perfil;
+}
+export class Perfil implements IPerfil{
     id?:number;
     no:number;
     datos_perfil:string;
@@ -61,7 +70,8 @@ export class Resistividad implements IResistividad{
 
 		  }
       save(){
-        return db.resistividades.add(this);
+        console.log(db.perfiles)
+        return db.perfiles.add(this);
       }
 }
 export let db= new TierraAppDB();
