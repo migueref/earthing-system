@@ -208,75 +208,15 @@
 
     </ion-slide>
     <!-- Ultimo slide -->
-    <ion-slide>
+    <ion-slide >
+      <button ion-button clear (click)="calcularRvarilla(10)">Mostrar resultados</button>
+      <div class="" *ngIf="showRvarilla">
+        <p>Varillas necesarias: ({{nelectrodos}})</p>
+        <p>rVarilla: ({{rVarilla|number:'1.2-2'}})</p>
+        <p>rGrupo: ({{rGrupo|number:'1.2-2'}})</p>
+      </div>
       <p>Resultados</p>
-      <div class="col-xs-12 medium-height">
-        <div class="col-xs-2">
-          No
-        </div>
-        <div class="col-xs-5">
-          Resistividad
-        </div>
-        <div class="col-xs-5">
-          Promedio
-        </div>
-      </div>
-      <div class="col-xs-12 medium-height">
-        <div class="col-xs-2">
-          1
-        </div>
-        <div class="col-xs-5">
-          valor
-        </div>
-        <div class="col-xs-5">
 
-        </div>
-      </div>
-      <div class="col-xs-12 medium-height">
-        <div class="col-xs-2">
-          2
-        </div>
-        <div class="col-xs-5">
-          valor
-        </div>
-        <div class="col-xs-5">
-
-        </div>
-      </div>
-      <div class="col-xs-12 medium-height">
-        <div class="col-xs-2">
-          3
-        </div>
-        <div class="col-xs-5">
-          valor
-        </div>
-        <div class="col-xs-5">
-
-        </div>
-      </div>
-      <div class="col-xs-12 medium-height">
-        <div class="col-xs-2">
-          4
-        </div>
-        <div class="col-xs-5">
-          valor
-        </div>
-        <div class="col-xs-5">
-
-        </div>
-      </div>
-      <div class="col-xs-12 medium-height">
-        <div class="col-xs-2">
-          5
-        </div>
-        <div class="col-xs-5">
-          valor
-        </div>
-        <div class="col-xs-5">
-
-        </div>
-      </div>
-      <button ion-button clear (click)="save()">Promedio total</button>
 
 
     </ion-slide>
