@@ -44,7 +44,10 @@ export class ListaPerfil{
   id?:number;
   noPerfiles:number;
   orientacion:string;
-  array_medicion:Perfil;
+  _array_medicion: Array<Perfil>;
+  constructor(){
+    this._array_medicion = new Array<Perfil>();
+  }
 }
 export class Perfil implements IPerfil{
     id?:number;
