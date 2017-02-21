@@ -76,7 +76,6 @@ export class SueloPage {
       ncercano=n3
       this.nelectrodos=12
     }
-      ncercano=n3
     if(n16>ncercano&&n16<=resistividadMax){
       ncercano=n3
       this.nelectrodos=16

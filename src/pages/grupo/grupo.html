@@ -14,5 +14,44 @@
 
 
 <ion-content padding>
+  <div class="" [hidden]="showRgrupo">
+    <ion-slides  pager>
+        <ion-slide>
+          <ion-list>
+            <ion-item>
+              <ion-label stacked>Rvarilla</ion-label>
+              <ion-input type="text" [(ngModel)]="rvarilla"></ion-input>
+            </ion-item>
 
+            <ion-item>
+              <ion-label stacked>Resistencia máxima</ion-label>
+              <ion-input type="text"[(ngModel)]="rmax"></ion-input>
+            </ion-item>
+          <button ion-button clear (click)="calcularRGrupo()">Calcular</button>
+        </ion-list>
+        </ion-slide>
+      </ion-slides>
+  </div>
+  <div class="" [hidden]="!showRgrupo">
+    <ion-slides pager>
+      <ion-slide [hidden]="!showRgrupo">
+        <ion-list>
+          <ion-item>
+            <ion-icon name="calculator" item-left></ion-icon>
+              Valor RGrupo: {{rGrupo}}
+          </ion-item>
+          <ion-item>
+            <ion-icon name="calculator" item-left></ion-icon>
+              Número de electrodos: {{nelectrodos}}
+          </ion-item>
+
+        </ion-list>
+        <button ion-button clear (click)="nuevoCalculo()">Nuevo cálculo</button>
+        <button ion-button color="secondary" round>Guardar</button>
+        <button ion-button color="danger"(click)="generatePDF()" round>Generar pdf</button>
+
+    </ion-slide>
+
+  </ion-slides>
+  </div>
 </ion-content>

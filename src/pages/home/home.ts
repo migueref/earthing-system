@@ -13,8 +13,8 @@ import * as jsPDF from 'jspdf';
 })
 export class HomePage {
   sueloPage = SueloPage;
-  varillaPage = GrupoPage;
-  grupoPage = VarillaPage;
+  varillaPage = VarillaPage;
+  grupoPage =  GrupoPage;
   constructor(public navCtrl: NavController) {
 
   }
