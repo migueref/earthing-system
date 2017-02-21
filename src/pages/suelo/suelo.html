@@ -40,7 +40,7 @@
     <ion-slide style="height:100%;" *ngFor="let item of profiles let i=index">
         <ion-list>
           <ion-item>
-            <ion-label>Seleccione orientación{{profiles[i].orientacion}}</ion-label>
+            <ion-label>Seleccione orientación</ion-label>
             <ion-select id=""[(ngModel)]="profiles[i].orientacion">
               <ion-option value="Vertical">Vertical</ion-option>
               <ion-option value="Horizontal">Horizontal</ion-option>
@@ -64,7 +64,7 @@
         </div>
         <div class="col-xs-12 medium-height">
           <div class="col-xs-2">
-            1{{medicion11}}
+            1
           </div>
           <div class="col-xs-3">
             1
@@ -209,13 +209,41 @@
     </ion-slide>
     <!-- Ultimo slide -->
     <ion-slide >
-      <button ion-button clear (click)="calcularRvarilla(10)">Mostrar resultados</button>
-      <div class="" *ngIf="showRvarilla">
-        <p>Varillas necesarias: ({{nelectrodos}})</p>
-        <p>rVarilla: ({{rVarilla|number:'1.2-2'}})</p>
-        <p>rGrupo: ({{rGrupo|number:'1.2-2'}})</p>
+      <div class="" *ngIf="!showRvarilla">
+        <ion-item>
+          <ion-label stacked>Resistencia máxima</ion-label>
+          <ion-input type="text"[(ngModel)]="rmax"></ion-input>
+        </ion-item>
+        <button ion-button clear (click)="calcularRvarilla()">Mostrar resultados</button>
+
       </div>
-      <p>Resultados</p>
+      <div class="" *ngIf="showRvarilla">
+        <p>Resultados</p>
+        <ion-item>
+          <ion-icon name="calculator" item-left></ion-icon>
+          Resistividad del suelo: {{resistividad}}
+        </ion-item>
+        <ion-item>
+          <ion-icon name="calculator" item-left></ion-icon>
+          rVarilla: {{rVarilla|number:'1.2-2'}}
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="calculator" item-left></ion-icon>
+          rGrupo: {{rGrupo|number:'1.2-2'}}
+        </ion-item>
+        <ion-item>
+          <ion-icon name="calculator" item-left></ion-icon>
+          Electrodos necesarios: {{nelectrodos}}
+        </ion-item>
+
+        <button ion-button clear (click)="cambiarMaxima()">Cambiar resistencia máxima</button>
+        <button ion-button clear color="secondary" round>Guardar</button>
+        <button ion-button clear color="danger"(click)="generatePDF()" round>Generar pdf</button>
+
+
+      </div>
+
 
 
 

@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {Perfil} from '../../database';
 import { ViewChild } from '@angular/core';
+import * as jsPDF from 'jspdf';
+
+
 /*
   Generated class for the Suelo page.
 
@@ -24,6 +27,9 @@ export class SueloPage {
   rGrupo:number;
   nelectrodos:number;
   showRvarilla:boolean;
+  rsuelo:number;
+  rmax:number;
+
 
   //definiendo slides
 
@@ -38,15 +44,16 @@ export class SueloPage {
     console.log(this.model)
 		this.model.save()
 	}
-  calcularRvarilla(resistividadMax){
-    this.resistividad=26;
+  calcularRvarilla(){
     // De acuerdo a las norma TMX/N/CN/00/1001
     // Formula: ((p)/(2*pi*L))*(4L/d)
     let n2, n3, n4,n8, n12, n16, n20, n24,ncercano;
     for(var i=0;i<this.noPerfiles;i++){
+      this.mostrarResultado(i);
       this.resistividad=this.resistividad+this.profiles[i].promedio;
     }
-    this.rVarilla=(26/(2*3.1416*1.5))*Math.log((4*1.5/0.016))
+    this.resistividad=this.resistividad/this.noPerfiles;
+    this.rVarilla=(this.resistividad/(2*3.1416*1.5))*Math.log((4*1.5/0.016))
 
     n2=this.rVarilla*0.580;
     n3=this.rVarilla*0.430;
@@ -56,36 +63,40 @@ export class SueloPage {
     n16=this.rVarilla*0.120;
     n20=this.rVarilla*0.100;
     n24=this.rVarilla*0.090;
-    ncercano=n2;
-    this.nelectrodos=2;
-    if(n3>ncercano&&n3<=resistividadMax){
+    ncercano=0;
+    if(n2>ncercano&&n2<=this.rmax){
+      ncercano=n2;
+
+      this.nelectrodos=2;
+    }
+    if(n3>ncercano&&n3<=this.rmax){
       ncercano=n3
       this.nelectrodos=3
     }
-    if(n4>ncercano&&n4<=resistividadMax){
-      ncercano=n3
+    if(n4>ncercano&&n4<=this.rmax){
+      ncercano=n4
       this.nelectrodos=4
     }
 
-    if(n8>ncercano&&n8<=resistividadMax){
-      ncercano=n3
+    if(n8>ncercano&&n8<=this.rmax){
+      ncercano=n8
       this.nelectrodos=8
     }
 
-    if(n12>ncercano&&n12<=resistividadMax){
-      ncercano=n3
+    if(n12>ncercano&&n12<=this.rmax){
+      ncercano=n12
       this.nelectrodos=12
     }
-    if(n16>ncercano&&n16<=resistividadMax){
-      ncercano=n3
+    if(n16>ncercano&&n16<=this.rmax){
+      ncercano=n16
       this.nelectrodos=16
     }
-    if(n20>ncercano&&n20<=resistividadMax){
-      ncercano=n3
+    if(n20>ncercano&&n20<=this.rmax){
+      ncercano=n20
       this.nelectrodos=20
     }
-    if(n24>ncercano&&n24<=resistividadMax){
-      ncercano=n3
+    if(n24>ncercano&&n24<=this.rmax){
+      ncercano=n24
       this.nelectrodos=24
     }
     this.rGrupo=ncercano;
@@ -134,6 +145,28 @@ export class SueloPage {
 
 
     console.log("number is"+number)
+  }
+  cambiarMaxima(){
+    this.rVarilla=null;
+    this.resistividad=null;
+    this.showRvarilla=false;
+  }
+  generatePDF(){
+    var rgrupo: string = String(this.rGrupo);
+    var rvarilla: string = String(this.rVarilla);
+    var nelectrodos: string = String(this.nelectrodos);
+    var doc = new jsPDF();
+    doc.text(20, 20, 'Valor RVarilla');
+    doc.text(70, 20, rvarilla);
+    doc.text(20, 30, 'Valor RGrupo');
+    doc.text(65, 30, rgrupo);
+    doc.text(20, 40, 'Número de electrodos');
+    doc.text(80, 40, nelectrodos);
+    doc.addPage();
+    doc.text(20, 20, 'Do you like that?');
+
+    // Save the PDF
+    doc.save('rsuelo-report.pdf');
   }
   ionViewDidLoad() {
     // let resistividad = new Resistividad(1,"vertical", 4.61,1,10,24.53);

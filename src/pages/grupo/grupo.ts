@@ -37,36 +37,39 @@ export class GrupoPage {
     n16=this.rvarilla*0.120;
     n20=this.rvarilla*0.100;
     n24=this.rvarilla*0.090;
-    ncercano=n2;
-    this.nelectrodos=2;
+    ncercano=0;
+    if(n2>ncercano&&n2<=this.rmax){
+      ncercano=n2
+      this.nelectrodos=2;
+    }
     if(n3>ncercano&&n3<=this.rmax){
       ncercano=n3
       this.nelectrodos=3
     }
     if(n4>ncercano&&n4<=this.rmax){
-      ncercano=n3
+      ncercano=n4
       this.nelectrodos=4
     }
 
     if(n8>ncercano&&n8<=this.rmax){
-      ncercano=n3
+      ncercano=n8
       this.nelectrodos=8
     }
 
     if(n12>ncercano&&n12<=this.rmax){
-      ncercano=n3
+      ncercano=n12
       this.nelectrodos=12
     }
     if(n16>ncercano&&n16<=this.rmax){
-      ncercano=n3
+      ncercano=n16
       this.nelectrodos=16
     }
     if(n20>ncercano&&n20<=this.rmax){
-      ncercano=n3
+      ncercano=n20
       this.nelectrodos=20
     }
     if(n24>ncercano&&n24<=this.rmax){
-      ncercano=n3
+      ncercano=n24
       this.nelectrodos=24
     }
     this.rGrupo=ncercano;
@@ -92,7 +95,7 @@ export class GrupoPage {
     doc.text(20, 20, 'Do you like that?');
 
     // Save the PDF
-    doc.save('Test.pdf');
+    doc.save('rgrupo-report.pdf');
   }
 
 }

@@ -15,4 +15,38 @@
 
 <ion-content padding>
 
+    <ion-slides  pager>
+        <ion-slide *ngIf="!showRvarilla">
+          <p>Ingresa los valores correspondientes</p>
+          <ion-list>
+            <ion-item>
+              <ion-label stacked>Resistividad suelo</ion-label>
+              <ion-input type="text" [(ngModel)]="rsuelo"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>Resistencia máxima</ion-label>
+              <ion-input type="text"[(ngModel)]="rmax"></ion-input>
+            </ion-item>
+          </ion-list>
+            <button ion-button clear (click)="calcularRvarilla()">Calcular</button>
+        </ion-slide>
+        <ion-slide  *ngIf="showRvarilla">
+            <ion-item>
+              <ion-icon name="calculator" item-left></ion-icon>
+                Valor RVarilla: {{rVarilla}}
+            </ion-item>
+            <ion-item>
+              <ion-icon name="calculator" item-left></ion-icon>
+                rGrupo: {{rGrupo}}
+            </ion-item>
+            <ion-item>
+              <ion-icon name="calculator" item-left></ion-icon>
+                Número de electrodos: {{nelectrodos}}
+            </ion-item>
+          <button ion-button clear (click)="nuevoCalculo()">Nuevo cálculo</button>
+          <button ion-button clear color="secondary" round>Guardar</button>
+          <button ion-button clear color="danger"(click)="generatePDF()" round>Generar pdf</button>
+        </ion-slide>
+  </ion-slides>
+
 </ion-content>
