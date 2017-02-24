@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,Platform } from 'ionic-angular';
 import {Perfil} from '../../database';
 import { ViewChild } from '@angular/core';
 import * as jsPDF from 'jspdf';
+import {InAppBrowser} from 'ionic-native';
+import { ThemeableBrowser } from 'ionic-native';
 
 
 /*
@@ -29,7 +31,7 @@ export class SueloPage {
   showRvarilla:boolean;
   rsuelo:number;
   rmax:number;
-
+  platform: Platform
 
   //definiendo slides
 
@@ -37,6 +39,68 @@ export class SueloPage {
     this.model = new Perfil(null,"",null);
     this.showRvarilla=false;
     this.resistividad=0;
+
+  }
+  launch(){
+    let options = {
+     statusbar: {
+         color: '#ffffffff'
+     },
+     toolbar: {
+         height: 44,
+         color: '#f0f0f0ff'
+     },
+     title: {
+         color: '#003264ff',
+         showPageTitle: true
+     },
+     backButton: {
+         image: 'back',
+         imagePressed: 'back_pressed',
+         align: 'left',
+         event: 'backPressed'
+     },
+     forwardButton: {
+         image: 'forward',
+         imagePressed: 'forward_pressed',
+         align: 'left',
+         event: 'forwardPressed'
+     },
+     closeButton: {
+         image: 'close',
+         imagePressed: 'close_pressed',
+         align: 'left',
+         event: 'closePressed'
+     },
+     customButtons: [
+         {
+             image: 'share',
+             imagePressed: 'share_pressed',
+             align: 'right',
+             event: 'sharePressed'
+         }
+     ],
+     menu: {
+         image: 'menu',
+         imagePressed: 'menu_pressed',
+         title: 'Test',
+         cancel: 'Cancel',
+         align: 'right',
+         items: [
+             {
+                 event: 'helloPressed',
+                 label: 'Hello World!'
+             },
+             {
+                 event: 'testPressed',
+                 label: 'Test!'
+             }
+         ]
+     },
+     backButtonCanClose: true
+    };
+
+    let browser = new ThemeableBrowser('https://ionic.io', '_blank', options);
 
   }
   save(){
@@ -165,8 +229,70 @@ export class SueloPage {
     doc.addPage();
     doc.text(20, 20, 'Do you like that?');
 
-    // Save the PDF
-    doc.save('rsuelo-report.pdf');
+    // // Save the PDF
+    // doc.save('rsuelo-report.pdf');
+    // Show generated pdf file
+      // Extract url from pdf binary file
+      var pdfurl = doc.output('datauristring');
+    let options = {
+     statusbar: {
+         color: '#ffffffff'
+     },
+     toolbar: {
+         height: 44,
+         color: '#f0f0f0ff'
+     },
+     title: {
+         color: '#003264ff',
+         showPageTitle: true
+     },
+     backButton: {
+         image: 'back',
+         imagePressed: 'back_pressed',
+         align: 'left',
+         event: 'backPressed'
+     },
+     forwardButton: {
+         image: 'forward',
+         imagePressed: 'forward_pressed',
+         align: 'left',
+         event: 'forwardPressed'
+     },
+     closeButton: {
+         image: 'close',
+         imagePressed: 'close_pressed',
+         align: 'left',
+         event: 'closePressed'
+     },
+     customButtons: [
+         {
+             image: 'share',
+             imagePressed: 'share_pressed',
+             align: 'right',
+             event: 'sharePressed'
+         }
+     ],
+     menu: {
+         image: 'menu',
+         imagePressed: 'menu_pressed',
+         title: 'Test',
+         cancel: 'Cancel',
+         align: 'right',
+         items: [
+             {
+                 event: 'helloPressed',
+                 label: 'Hello World!'
+             },
+             {
+                 event: 'testPressed',
+                 label: 'Test!'
+             }
+         ]
+     },
+     backButtonCanClose: true
+    };
+
+    let browser = new ThemeableBrowser('https://docs.google.com/gview?embedded=true&url=' + encodeURIComponent(pdfurl) , '_blank', options);
   }
   ionViewDidLoad() {
     // let resistividad = new Resistividad(1,"vertical", 4.61,1,10,24.53);
