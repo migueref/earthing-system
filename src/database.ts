@@ -72,6 +72,14 @@ export class Perfil implements IPerfil{
 			if(id)this.id=id;
 
 		  }
+      setCoords(coords){
+      	this.lat=coords.latitude;
+      	this.lng=coords.longitude;
+      }
+      cleanCoords(){
+      	this.lat=null;
+      	this.lng=null;
+      }
       save(){
         console.log(db.perfiles)
         return db.perfiles.add(this);

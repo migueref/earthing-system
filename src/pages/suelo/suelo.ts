@@ -32,6 +32,7 @@ export class SueloPage {
   rsuelo:number;
   rmax:number;
   platform: Platform
+  shouldGeolocate  : boolean=true;
 
   //definiendo slides
 
@@ -42,10 +43,16 @@ export class SueloPage {
 
   }
   getLocation(){
-    this.geolocator.get().then((resultado)=>{
-     console.log(resultado)
-   })
-  }
+		if(this.shouldGeolocate){
+		  this.geolocator.get().then((resultado)=>{
+			this.model.setCoords(resultado.coords);
+			console.log(this.model);
+		  }).catch((err)=>console.log(err))
+		}else{
+		  this.model.cleanCoords();
+		  console.log(this.model);
+		}
+	}
   launch(){
     let options = {
      statusbar: {
