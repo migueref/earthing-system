@@ -33,6 +33,7 @@ export class SueloPage {
   rmax:number;
   platform: Platform
   shouldGeolocate  : boolean=true;
+  shouldSend  : boolean=true;
 
   //definiendo slides
 
@@ -43,15 +44,18 @@ export class SueloPage {
 
   }
   getLocation(){
-		if(this.shouldGeolocate){
-		  this.geolocator.get().then((resultado)=>{
-			this.model.setCoords(resultado.coords);
-			console.log(this.model);
-		  }).catch((err)=>console.log(err))
-		}else{
-		  this.model.cleanCoords();
-		  console.log(this.model);
-		}
+			if(this.shouldGeolocate){
+			  this.shouldSend=false;
+			  this.geolocator.get().then((resultado)=>{
+				this.model.setCoords(resultado.coords);
+				console.log(this.model);
+				this.shouldSend=true;
+			  }).catch((err)=>console.log(err))
+			}else{
+			  this.model.cleanCoords();
+			  console.log(this.model);
+			}
+
 	}
   launch(){
     let options = {
@@ -123,6 +127,9 @@ export class SueloPage {
   calcularRvarilla(){
     // De acuerdo a las norma TMX/N/CN/00/1001
     // Formula: ((p)/(2*pi*L))*(4L/d)
+    //obtener geolocation
+    this.getLocation();
+
     let n2, n3, n4,n8, n12, n16, n20, n24,ncercano;
     for(var i=0;i<this.noPerfiles;i++){
       this.mostrarResultado(i);
@@ -311,11 +318,8 @@ export class SueloPage {
 		// resistividad.save();
     console.log('ionViewDidLoad SueloPage');
 
-    //geolocation test
-    this.geolocator.get().then((resultado)=>{
-		  console.log(resultado)
-		  console.log(resultado.coords.longitude)
-		}).catch((err)=>console.log(err))
+
+
   }
 
 }

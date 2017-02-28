@@ -237,9 +237,9 @@
           Electrodos necesarios: {{nelectrodos}}
         </ion-item>
 
-        <button ion-button clear (click)="cambiarMaxima()">Cambiar resistencia máxima</button>
-        <button ion-button clear color="secondary" round>Guardar</button>
-        <button ion-button clear color="danger"(click)="generatePDF()" round>Generar pdf</button>
+        <button [disabled]="!shouldSend" ion-button clear (click)="cambiarMaxima()">Cambiar resistencia máxima</button>
+        <button [disabled]="!shouldSend" ion-button clear color="secondary" round>Guardar</button>
+        <button [disabled]="!shouldSend" ion-button clear color="danger"(click)="generatePDF()" round>Generar pdf</button>
 
 
       </div>
