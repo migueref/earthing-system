@@ -5,7 +5,7 @@ import { ViewChild } from '@angular/core';
 import * as jsPDF from 'jspdf';
 import {InAppBrowser} from 'ionic-native';
 import { ThemeableBrowser } from 'ionic-native';
-
+import { GeolocationService } from '../../services/geolocation.service';
 
 /*
   Generated class for the Suelo page.
@@ -35,11 +35,16 @@ export class SueloPage {
 
   //definiendo slides
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public geolocator: GeolocationService) {
     this.model = new Perfil(null,"",null);
     this.showRvarilla=false;
     this.resistividad=0;
 
+  }
+  getLocation(){
+    this.geolocator.get().then((resultado)=>{
+     console.log(resultado)
+   })
   }
   launch(){
     let options = {
@@ -299,6 +304,11 @@ export class SueloPage {
 		// resistividad.save();
     console.log('ionViewDidLoad SueloPage');
 
+    //geolocation test
+    this.geolocator.get().then((resultado)=>{
+		  console.log(resultado)
+		  console.log(resultado.coords.longitude)
+		}).catch((err)=>console.log(err))
   }
 
 }

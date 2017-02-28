@@ -8,7 +8,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { SueloPage } from '../pages/suelo/suelo';
 import { VarillaPage } from '../pages/varilla/varilla';
 import { GrupoPage } from '../pages/grupo/grupo';
-
+//Services
+import { GeolocationService } from '../services/geolocation.service';
 @NgModule({
   declarations: [
     MyApp,
@@ -34,6 +35,6 @@ import { GrupoPage } from '../pages/grupo/grupo';
     GrupoPage,
     VarillaPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [GeolocationService,{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {}
