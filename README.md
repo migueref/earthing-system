@@ -3,15 +3,16 @@ Earthing-system App
 
 ## Releases Code
 
-You can make calculations according to type of the building
+You can make calculations to get resistance and resistivity
 
 ## Features
 
 This repository was built with the following technologies:
 
-  - Materialize 
+  - Angular 2
   - Ionic 2
-  - Geolocation 
+  - Geolocation
+  - IndexedDB
 
 ## Connect with me
 

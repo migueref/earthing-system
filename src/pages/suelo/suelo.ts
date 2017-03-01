@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams,Platform } from 'ionic-angular';
-import {Perfil} from '../../database';
+import {Perfil,Medicion} from '../../database';
 import { ViewChild } from '@angular/core';
 import * as jsPDF from 'jspdf';
 import {InAppBrowser} from 'ionic-native';
@@ -34,11 +34,12 @@ export class SueloPage {
   platform: Platform
   shouldGeolocate  : boolean=true;
   shouldSend  : boolean=true;
-
+  modelMedicion:Medicion;
   //definiendo slides
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public geolocator: GeolocationService) {
-    this.model = new Perfil(null,"",null);
+    this.model = new Perfil(null,null,null);
+    this.modelMedicion = new Medicion(null,null,null);
     this.showRvarilla=false;
     this.resistividad=0;
 
@@ -47,7 +48,8 @@ export class SueloPage {
 			if(this.shouldGeolocate){
 			  this.shouldSend=false;
 			  this.geolocator.get().then((resultado)=>{
-				this.model.setCoords(resultado.coords);
+        this.model.setCoords(resultado.coords);
+				this.modelMedicion.setCoords(resultado.coords);
 				console.log(this.model);
 				this.shouldSend=true;
 			  }).catch((err)=>console.log(err))
@@ -314,8 +316,8 @@ export class SueloPage {
     let browser = new ThemeableBrowser('https://docs.google.com/gview?embedded=true&url=' + encodeURIComponent(pdfurl) , '_blank', options);
   }
   ionViewDidLoad() {
-    // let resistividad = new Resistividad(1,"vertical", 4.61,1,10,24.53);
-		// resistividad.save();
+    let medicion = new Medicion(26,14,9.54,2);
+		medicion.save();
     console.log('ionViewDidLoad SueloPage');
 
 
