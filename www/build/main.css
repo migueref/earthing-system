@@ -21376,3 +21376,13 @@ page-home .blue-light {
 page-suelo .medium-height {
   height: 2em;
 }
+
+page-wallets ion-fab {
+  bottom: 1em;
+  right: 1em;
+}
+
+page-wallets ion-fab button {
+  background-color: #222 !important;
+  font-size: 1.5em !important;
+}

@@ -82,6 +82,11 @@ export class Medicion implements IMedicion{
 			//return a promise
 			return db.mediciones.orderBy("id").reverse().first();
 	}
+  static all(){
+			//Return all transactions
+			//return a promise
+			return db.mediciones.orderBy("id").reverse().toArray();
+		}
   setCoords(coords){
   	this.lat=coords.latitude;
   	this.lng=coords.longitude;
@@ -143,6 +148,11 @@ export class Perfil implements IPerfil{
       	this.lat=null;
       	this.lng=null;
       }
+      static all(){
+    			//Return all transactions
+    			//return a promise
+    			return db.perfiles.orderBy("id").reverse().toArray();
+    	}
       save(){
         console.log(db.perfiles)
         return db.perfiles.add(this);

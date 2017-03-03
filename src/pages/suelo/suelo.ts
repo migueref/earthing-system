@@ -45,7 +45,6 @@ export class SueloPage {
     this.modelMedicion = new Medicion(null,null,null);
     this.showRvarilla=null;
     this.resistividad=0;
-
   }
   saveData(){
     this.modelMedicion = new Medicion(this.resistividad, this.rVarilla, this.rGrupo,this.nelectrodos);
@@ -71,12 +70,7 @@ export class SueloPage {
           this.model.save();
         }
       });
-
-
   }
-
-
-
   getLocation(){
 			if(this.shouldGeolocate){
 			  this.shouldSend=false;

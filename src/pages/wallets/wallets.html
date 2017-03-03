@@ -1,0 +1,37 @@
+<!--
+  Generated template for the Wallets page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Datos guardados</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-content>
+		  <ion-list>
+			     <ion-list-header>Registros almacenados</ion-list-header>
+           <ion-item *ngFor="let medicion of mediciones">
+              <ion-avatar item-left>
+                <img src="assets/img/wallet.png" alt="">
+              </ion-avatar>
+              <h2>Resistencia del suelo: {{medicion.rSuelo}}</h2>
+              <h3>RVarilla: {{medicion.rVarilla}}</h3>
+              <h3>RGrupo: {{medicion.rGrupo}}</h3>
+              <p>
+                <button ion-button clear (tap)="set(wallet)">Ver completo</button>
+
+                <button ion-button color="danger">Eliminar</button>
+              </p>
+            </ion-item >
+            <button ion-button clear (tap)="set(wallet)">Generar reporte</button>
+
+		  </ion-list>
+		</ion-content>
+</ion-content>
