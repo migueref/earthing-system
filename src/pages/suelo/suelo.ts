@@ -36,6 +36,8 @@ export class SueloPage {
   shouldSend  : boolean=true;
   modelMedicion:Medicion;
   showResults:boolean=false;
+
+  lastIdMedicion:number;
   //definiendo slides
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public geolocator: GeolocationService) {
@@ -47,9 +49,34 @@ export class SueloPage {
   }
   saveData(){
     this.modelMedicion = new Medicion(this.resistividad, this.rVarilla, this.rGrupo,this.nelectrodos);
+    this.modelMedicion.save();
     Medicion.first()
-			.then((data)=>console.log(data));
+			.then((data)=>{
+        this.lastIdMedicion=data.id
+        console.log("lastIdMedicion es: "+this.lastIdMedicion)
+        for(let i=0;i<this.noPerfiles;i++){
+          this.model = new Perfil(i,this.lastIdMedicion,
+                                  this.profiles[i].orientacion,
+                                  this.profiles[i].med1,
+                                  this.profiles[i].med2,
+                                  this.profiles[i].med3,
+                                  this.profiles[i].med4,
+                                  this.profiles[i].med5,
+                                  this.profiles[i].res1,
+                                  this.profiles[i].res2,
+                                  this.profiles[i].res3,
+                                  this.profiles[i].res4,
+                                  this.profiles[i].res1,
+                                  this.profiles[i].promedio);
+          this.model.save();
+        }
+      });
+
+
   }
+
+
+
   getLocation(){
 			if(this.shouldGeolocate){
 			  this.shouldSend=false;
@@ -325,8 +352,8 @@ export class SueloPage {
     let browser = new ThemeableBrowser('https://docs.google.com/gview?embedded=true&url=' + encodeURIComponent(pdfurl) , '_blank', options);
   }
   ionViewDidLoad() {
-    let medicion = new Medicion(26,14,9.54,2);
-		medicion.save();
+    // let medicion = new Medicion(26,14,9.54,2);
+		// medicion.save();
     console.log('ionViewDidLoad SueloPage');
 
 
