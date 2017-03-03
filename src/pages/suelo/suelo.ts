@@ -35,14 +35,20 @@ export class SueloPage {
   shouldGeolocate  : boolean=true;
   shouldSend  : boolean=true;
   modelMedicion:Medicion;
+  showResults:boolean=false;
   //definiendo slides
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public geolocator: GeolocationService) {
     this.model = new Perfil(null,null,null);
     this.modelMedicion = new Medicion(null,null,null);
-    this.showRvarilla=false;
+    this.showRvarilla=null;
     this.resistividad=0;
 
+  }
+  saveData(){
+    this.modelMedicion = new Medicion(this.resistividad, this.rVarilla, this.rGrupo,this.nelectrodos);
+    Medicion.first()
+			.then((data)=>console.log(data));
   }
   getLocation(){
 			if(this.shouldGeolocate){
@@ -189,6 +195,9 @@ export class SueloPage {
     console.log("el numero electrodos es:"+this.nelectrodos);
     this.showRvarilla=true
 
+  }
+  changeShowResults(){
+    this.showResults=true;
   }
   mostrarResultado(number){
     console.log(this.profiles[number])

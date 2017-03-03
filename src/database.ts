@@ -77,6 +77,11 @@ export class Medicion implements IMedicion{
     if(rGrupo)this.rGrupo=rGrupo;
     if(nelectrodos)this.nelectrodos=nelectrodos;
   }
+  static first(){
+			//Return first element
+			//return a promise
+			return db.mediciones.orderBy("id").reverse().first();
+	}
   setCoords(coords){
   	this.lat=coords.latitude;
   	this.lng=coords.longitude;

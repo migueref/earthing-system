@@ -203,13 +203,12 @@
 
           </div>
         </div>
-        <button ion-button clear>Guardar</button>
       </div>
 
     </ion-slide>
     <!-- Ultimo slide -->
-    <ion-slide >
-      <div class="" *ngIf="!showRvarilla">
+    <ion-slide *ngIf="noPerfiles" >
+      <div class="" *ngIf="!showRvarilla" >
         <ion-item>
           <ion-label stacked>Resistencia máxima</ion-label>
           <ion-input type="text"[(ngModel)]="rmax"></ion-input>
@@ -238,7 +237,7 @@
         </ion-item>
 
         <button [disabled]="!shouldSend" ion-button clear (click)="cambiarMaxima()">Cambiar resistencia máxima</button>
-        <button [disabled]="!shouldSend" ion-button clear color="secondary" round>Guardar</button>
+        <button [disabled]="!shouldSend" ion-button clear color="secondary"round (click)="saveData()">Guardar</button>
         <button [disabled]="!shouldSend" ion-button clear color="danger"(click)="generatePDF()" round>Generar pdf</button>
 
 
