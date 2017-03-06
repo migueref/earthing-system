@@ -70,12 +70,14 @@ export class Medicion implements IMedicion{
   nelectrodos:number;
   lat:number;
   lng:number;
+  date:any;
 
   constructor(rSuelo?:number,rVarilla?:number,rGrupo?:number,nelectrodos?:number){
     if(rSuelo)this.rSuelo=rSuelo;
   	if(rVarilla)this.rVarilla=rVarilla;
     if(rGrupo)this.rGrupo=rGrupo;
     if(nelectrodos)this.nelectrodos=nelectrodos;
+    this.date = new Date();
   }
   static first(){
 			//Return first element
