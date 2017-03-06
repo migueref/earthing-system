@@ -16,6 +16,7 @@ export class WalletsPage {
   mediciones:any;
   mostrarMedicion:boolean=false;
   perfil:any;
+  medicionGuardada:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
   }
@@ -24,23 +25,28 @@ export class WalletsPage {
     // console.log(medicion)
     this.mostrarMedicion=true;
     Perfil.getPerfil(medicion.id)
-    .then((data)  =>  {
-      this.perfil=new Perfil(data.no,
-                             data.idMedicion,
-                             data.orientacion,
-                             data.med1,
-                             data.med2,
-                             data.med3,
-                             data.med4,
-                             data.med5,
-                             data.res1,
-                             data.res2,
-                             data.res3,
-                             data.res4,
-                             data.res5,
-                             data.promedio);
+          .then((data)  =>  {
+            this.perfil=new Perfil(data.no,
+                                   data.idMedicion,
+                                   data.orientacion,
+                                   data.med1,
+                                   data.med2,
+                                   data.med3,
+                                   data.med4,
+                                   data.med5,
+                                   data.res1,
+                                   data.res2,
+                                   data.res3,
+                                   data.res4,
+                                   data.res5,
+                                   data.promedio);
 
-    });
+          });
+    //Get medicion info
+    Medicion.getMedicion(medicion.id)
+          .then((data)  =>  {
+            this.medicionGuardada=data;
+          });
 
   }
   eliminarRegistro(medicion:Medicion){
@@ -58,10 +64,10 @@ export class WalletsPage {
   }
   loadTransactions(){
 			Medicion.all()
-			.then((data)  =>  {
-			  this.mediciones=data;
-			  console.log(this.mediciones);
-			});
+      .then((data)  =>  {
+      this.mediciones=data;
+      console.log(this.mediciones);
+    });
 	}
   ionViewDidLoad() {
     console.log('ionViewDidLoad WalletsPage');

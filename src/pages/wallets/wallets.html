@@ -23,6 +23,7 @@
             <img src="assets/img/wallet.png" alt="">
           </ion-avatar>
           <h2>Fecha: {{medicion.date| date: 'dd/MM/yyyy'}}</h2>
+          <h3>Lat: {{medicion.lat}}</h3>
           <h3>Resistencia del suelo: {{medicion.rSuelo}}</h3>
           <h3>RVarilla: {{medicion.rVarilla}}</h3>
           <h3>RGrupo: {{medicion.rGrupo}}</h3>
@@ -39,6 +40,26 @@
 
       <ion-list-header>Información del registro</ion-list-header>
       <ion-list>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-label floating>Resistencia máxima de:</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="medicionGuardada.rmax"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-label floating>rVarilla</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="medicionGuardada.rVarilla"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-label floating>rGrupo</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="medicionGuardada.rGrupo"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-label floating>Lat</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="medicionGuardada.lat"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-label floating>Lng</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="medicionGuardada.lng"></ion-input>
+        </ion-item>
         <ion-item *ngIf="perfil">
           <ion-label floating>Medición 1</ion-label>
           <ion-input type="text" disabled [(ngModel)]="perfil.med1">{{perfil.med1}}</ion-input>

@@ -47,29 +47,35 @@ export class SueloPage {
     this.resistividad=0;
   }
   saveData(){
-    this.modelMedicion = new Medicion(this.resistividad, this.rVarilla, this.rGrupo,this.nelectrodos);
-    this.modelMedicion.save();
-    Medicion.first()
-			.then((data)=>{
-        this.lastIdMedicion=data.id
-        console.log("lastIdMedicion es: "+this.lastIdMedicion)
-        for(let i=0;i<this.noPerfiles;i++){
-          this.model = new Perfil(i,this.lastIdMedicion,
-                                  this.profiles[i].orientacion,
-                                  this.profiles[i].med1,
-                                  this.profiles[i].med2,
-                                  this.profiles[i].med3,
-                                  this.profiles[i].med4,
-                                  this.profiles[i].med5,
-                                  this.profiles[i].res1,
-                                  this.profiles[i].res2,
-                                  this.profiles[i].res3,
-                                  this.profiles[i].res4,
-                                  this.profiles[i].res5,
-                                  this.profiles[i].promedio);
-          this.model.save();
-        }
-      });
+    this.modelMedicion = new Medicion(this.resistividad, this.rVarilla, this.rGrupo,this.nelectrodos,null, null, null,this.rmax);
+    //geolocator
+    this.geolocator.get().then((resultado)=>{
+      this.modelMedicion.setCoords(resultado.coords);
+      //save
+      this.modelMedicion.save();
+      Medicion.first()
+  			.then((data)=>{
+          this.lastIdMedicion=data.id
+          console.log("lastIdMedicion es: "+this.lastIdMedicion)
+          for(let i=0;i<this.noPerfiles;i++){
+            this.model = new Perfil(i,this.lastIdMedicion,
+                                    this.profiles[i].orientacion,
+                                    this.profiles[i].med1,
+                                    this.profiles[i].med2,
+                                    this.profiles[i].med3,
+                                    this.profiles[i].med4,
+                                    this.profiles[i].med5,
+                                    this.profiles[i].res1,
+                                    this.profiles[i].res2,
+                                    this.profiles[i].res3,
+                                    this.profiles[i].res4,
+                                    this.profiles[i].res5,
+                                    this.profiles[i].promedio);
+            this.model.save();
+          }
+        });
+    }).catch((err)=>console.log(err))
+
   }
   getLocation(){
 			if(this.shouldGeolocate){

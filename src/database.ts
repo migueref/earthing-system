@@ -12,7 +12,7 @@ export class TierraAppDB extends Dexie{
     });
     this.version(3).stores({
       perfiles:"++id,idMedicion,no,orientacion,med1,med2,med3,med4,med5,res1,res2,res3,res4,res5,promedio,total,lat,lng",
-      mediciones:"++id,rSuelo,rVarilla,rGrupo,nelectrodos"
+      mediciones:"++id,rSuelo,rVarilla,rGrupo,nelectrodos,lat,lng,date"
    });
    this.perfiles.mapToClass(Perfil)
    this.mediciones.mapToClass(Medicion)
@@ -25,6 +25,9 @@ export interface IMedicion{
   rVarilla:number;
   rGrupo:number;
   nelectrodos:number;
+  lat:number;
+  lng:number;
+  date:number;
 
 }
 export interface IPerfil{
@@ -71,12 +74,14 @@ export class Medicion implements IMedicion{
   lat:number;
   lng:number;
   date:any;
+  rmax:any;
 
-  constructor(rSuelo?:number,rVarilla?:number,rGrupo?:number,nelectrodos?:number){
+  constructor(rSuelo?:number,rVarilla?:number,rGrupo?:number,nelectrodos?:number,lat?:number,lng?:number,date?:any,rmax?:number){
     if(rSuelo)this.rSuelo=rSuelo;
   	if(rVarilla)this.rVarilla=rVarilla;
     if(rGrupo)this.rGrupo=rGrupo;
     if(nelectrodos)this.nelectrodos=nelectrodos;
+    if(rmax)this.rmax=rmax;
     this.date = new Date();
   }
   static first(){
@@ -84,6 +89,11 @@ export class Medicion implements IMedicion{
 			//return a promise
 			return db.mediciones.orderBy("id").reverse().first();
 	}
+  static getMedicion(idMedicion){
+      //Return profile selected
+      //return a promise
+      return db.mediciones.where("id").equals(idMedicion).first();
+  }
   static all(){
 			//Return all transactions
 			//return a promise
