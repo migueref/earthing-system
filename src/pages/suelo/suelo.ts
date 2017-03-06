@@ -65,7 +65,7 @@ export class SueloPage {
                                   this.profiles[i].res2,
                                   this.profiles[i].res3,
                                   this.profiles[i].res4,
-                                  this.profiles[i].res1,
+                                  this.profiles[i].res5,
                                   this.profiles[i].promedio);
           this.model.save();
         }

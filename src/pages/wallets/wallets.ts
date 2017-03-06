@@ -13,9 +13,48 @@ import {Perfil,Medicion} from '../../database';
   templateUrl: 'wallets.html'
 })
 export class WalletsPage {
-  mediciones:any
+  mediciones:any;
+  mostrarMedicion:boolean=false;
+  perfil:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
+  }
+  mostrarRegistro(medicion){
+    // console.log("la medicion:")
+    // console.log(medicion)
+    this.mostrarMedicion=true;
+    Perfil.getPerfil(medicion.id)
+    .then((data)  =>  {
+      this.perfil=new Perfil(data.no,
+                             data.idMedicion,
+                             data.orientacion,
+                             data.med1,
+                             data.med2,
+                             data.med3,
+                             data.med4,
+                             data.med5,
+                             data.res1,
+                             data.res2,
+                             data.res3,
+                             data.res4,
+                             data.res5,
+                             data.promedio);
+
+    });
+
+  }
+  eliminarRegistro(medicion:Medicion){
+
+    this.mediciones= this.mediciones.filter(w=>{
+      console.log(w.id)
+		  return w.id!=medicion.id;
+
+		});
+    medicion.destroy();
+
+  }
+  mostrarLista(){
+    this.mostrarMedicion=false;
   }
   loadTransactions(){
 			Medicion.all()
@@ -23,7 +62,7 @@ export class WalletsPage {
 			  this.mediciones=data;
 			  console.log(this.mediciones);
 			});
-		 }
+	}
   ionViewDidLoad() {
     console.log('ionViewDidLoad WalletsPage');
     this.loadTransactions();

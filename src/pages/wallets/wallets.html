@@ -15,23 +15,75 @@
 
 <ion-content padding>
   <ion-content>
-		  <ion-list>
-			     <ion-list-header>Registros almacenados</ion-list-header>
-           <ion-item *ngFor="let medicion of mediciones">
-              <ion-avatar item-left>
-                <img src="assets/img/wallet.png" alt="">
-              </ion-avatar>
-              <h2>Resistencia del suelo: {{medicion.rSuelo}}</h2>
-              <h3>RVarilla: {{medicion.rVarilla}}</h3>
-              <h3>RGrupo: {{medicion.rGrupo}}</h3>
-              <p>
-                <button ion-button clear (tap)="set(wallet)">Ver completo</button>
+	  <div *ngIf="!mostrarMedicion">
+      <ion-list>
+  			<ion-list-header>Registros almacenados</ion-list-header>
+        <ion-item *ngFor="let medicion of mediciones">
+          <ion-avatar item-left>
+            <img src="assets/img/wallet.png" alt="">
+          </ion-avatar>
+          <h2>Resistencia del suelo: {{medicion.rSuelo}}</h2>
+          <h3>RVarilla: {{medicion.rVarilla}}</h3>
+          <h3>RGrupo: {{medicion.rGrupo}}</h3>
+          <p>
+            <button ion-button clear (tap)="mostrarRegistro(medicion)">Ver completo</button>
+            <button ion-button color="danger"(tap)="eliminarRegistro(medicion)">Eliminar</button>
+          </p>
+        </ion-item >
+        <button ion-button clear (tap)="set(medicion)">Generar reporte</button>
+  		 </ion-list>
+	  </div>
+    <div *ngIf="mostrarMedicion">
+      <button ion-button clear (tap)="mostrarLista()">Regresar</button>
 
-                <button ion-button color="danger">Eliminar</button>
-              </p>
-            </ion-item >
-            <button ion-button clear (tap)="set(wallet)">Generar reporte</button>
+      <ion-list-header>Información del registro</ion-list-header>
+      <ion-list>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Medición 1</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.med1">{{perfil.med1}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Medición 2</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.med2">{{perfil.med2}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Medición 3</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.med3">{{perfil.med3}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Medición 4</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.med4">{{perfil.med4}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Medición 5</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.med5">{{perfil.med5}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Resultado 1</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.res1">{{perfil.res1}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Resultado 2</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.res2">{{perfil.res2}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Resultado 3</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.res3">{{perfil.res3}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Resultado 4</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.res4">{{perfil.res4}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Resultado 5</ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.res5">{{perfil.res5}}</ion-input>
+        </ion-item>
+        <ion-item *ngIf="perfil">
+          <ion-label floating>Resistividad del suelo </ion-label>
+          <ion-input type="text" disabled [(ngModel)]="perfil.promedio">{{perfil.promedio}}</ion-input>
+        </ion-item>
 
-		  </ion-list>
-		</ion-content>
+      </ion-list>
+    </div>
+	</ion-content>
 </ion-content>
