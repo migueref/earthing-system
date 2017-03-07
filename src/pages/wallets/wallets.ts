@@ -16,6 +16,7 @@ export class WalletsPage {
   mediciones:any;
   mostrarMedicion:boolean=false;
   perfil:any;
+  perfiles:any;
   medicionGuardada:any;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
@@ -24,24 +25,8 @@ export class WalletsPage {
     // console.log("la medicion:")
     // console.log(medicion)
     this.mostrarMedicion=true;
-    Perfil.getPerfil(medicion.id)
-          .then((data)  =>  {
-            this.perfil=new Perfil(data.no,
-                                   data.idMedicion,
-                                   data.orientacion,
-                                   data.med1,
-                                   data.med2,
-                                   data.med3,
-                                   data.med4,
-                                   data.med5,
-                                   data.res1,
-                                   data.res2,
-                                   data.res3,
-                                   data.res4,
-                                   data.res5,
-                                   data.promedio);
-
-          });
+    Perfil.getPerfiles(medicion.id)
+          .then((data)=>this.perfiles=data);
     //Get medicion info
     Medicion.getMedicion(medicion.id)
           .then((data)  =>  {
@@ -69,8 +54,8 @@ export class WalletsPage {
       console.log(this.mediciones);
     });
 	}
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WalletsPage');
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter WalletsPage');
     this.loadTransactions();
 
   }

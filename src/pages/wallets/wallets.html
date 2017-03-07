@@ -36,10 +36,120 @@
   		 </ion-list>
 	  </div>
     <div *ngIf="mostrarMedicion">
-      <button ion-button clear (tap)="mostrarLista()">Regresar</button>
 
-      <ion-list-header>Información del registro</ion-list-header>
-      <ion-list>
+      <ion-card>
+        <img src="assets/img/result.png">
+        <ion-fab left top>
+          <button ion-fab (tap)="mostrarLista()">
+            <ion-icon name="md-arrow-back"></ion-icon>
+          </button>
+        </ion-fab>
+        <ion-item *ngIf="medicionGuardada">
+          <h1>Datos generales</h1>
+        </ion-item>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-icon name="md-calculator" item-left large ></ion-icon>
+          <h2>Resistividad del suelo</h2>
+          <p>{{medicionGuardada.rSuelo}}</p>
+        </ion-item>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-icon name="md-list" item-left large></ion-icon>
+          <h2>Resistencia máxima:</h2>
+          <p>{{medicionGuardada.rmax}}</p>
+        </ion-item>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-icon name="md-calculator" item-left large ></ion-icon>
+          <h2>RVarilla</h2>
+          <p>{{medicionGuardada.rVarilla}}</p>
+        </ion-item>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-icon name="md-calculator" item-left large ></ion-icon>
+          <h2>RGrupo</h2>
+          <p>{{medicionGuardada.rGrupo}}</p>
+        </ion-item>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-icon name="md-locate" item-left large ></ion-icon>
+          <h2>Latitud</h2>
+          <p>{{medicionGuardada.lat}}</p>
+        </ion-item>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-icon name="md-locate" item-left large ></ion-icon>
+          <h2>Longitud</h2>
+          <p>{{medicionGuardada.lng}}</p>
+        </ion-item>
+        <div class="" *ngFor="let perfil of perfiles let i=index">
+          <ion-item *ngIf="medicionGuardada">
+            <h1>Perfil {{i+1}}</h1>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Orientación</h2>
+            <p>{{perfil.orientacion}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Medición 1</h2>
+            <p>{{perfil.med1}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Resistividad 1</h2>
+            <p>{{perfil.res1}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Medición 2</h2>
+            <p>{{perfil.med2}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Resistividad 2</h2>
+            <p>{{perfil.res2}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Medición 3</h2>
+            <p>{{perfil.med3}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Resistividad 3</h2>
+            <p>{{perfil.res3}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Medición 4</h2>
+            <p>{{perfil.med4}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Resistividad 4</h2>
+            <p>{{perfil.res4}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Medición 5</h2>
+            <p>{{perfil.med5}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Resistividad 5</h2>
+            <p>{{perfil.res5}}</p>
+          </ion-item>
+          <ion-item *ngIf="medicionGuardada">
+            <ion-icon name="md-list" item-left large ></ion-icon>
+            <h2>Resistividad promedio</h2>
+            <p>{{perfil.promedio}}</p>
+          </ion-item>
+        </div>
+        <ion-item *ngIf="medicionGuardada">
+          <ion-icon name="md-calculator" item-left large ></ion-icon>
+          <h2>Resistividad del suelo</h2>
+          <p>{{medicionGuardada.rSuelo}}</p>
+        </ion-item>
+
+      </ion-card>
+      <!-- <ion-list>
         <ion-item *ngIf="medicionGuardada">
           <ion-label floating>Resistencia máxima de:</ion-label>
           <ion-input type="text" disabled [(ngModel)]="medicionGuardada.rmax"></ion-input>
@@ -104,8 +214,7 @@
           <ion-label floating>Resistividad del suelo </ion-label>
           <ion-input type="text" disabled [(ngModel)]="perfil.promedio">{{perfil.promedio}}</ion-input>
         </ion-item>
-
-      </ion-list>
+      </ion-list> -->
     </div>
 	</ion-content>
 </ion-content>

@@ -139,7 +139,8 @@ export class Perfil implements IPerfil{
     // {name:"perfil1",orientacion:"",med1:0,med2:0,med3:0,med4:0,med5:0,res1:0,res2:0,res3:0,res4:0,res5:0,showR:false,promedio:0}
     constructor(no:number,idMedicion:number,orientacion:string,med1?:number,med2?:number,med3?:number,med4?:number,med5?:number,res1?:number,res2?:number,res3?:number,res4?:number,res5?:number,promedio?:number, lat?:number,lng ?: number, id?:number){
       this.no=no;
-			this.idMedicion=idMedicion;
+      this.idMedicion=idMedicion;
+			this.orientacion=orientacion;
       if(med1)this.med1=med1;
       if(med2)this.med2=med2;
       if(med3)this.med3=med3;
@@ -155,10 +156,10 @@ export class Perfil implements IPerfil{
 			if(id)this.id=id;
 
 		  }
-      static getPerfil(idPerfil){
+      static getPerfiles(idPerfil){
     			//Return profile selected
     			//return a promise
-    			return db.perfiles.where("idMedicion").equals(idPerfil).first();
+    			return db.perfiles.where("idMedicion").equals(idPerfil).toArray();
     	}
       setCoords(coords){
       	this.lat=coords.latitude;
